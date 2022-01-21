@@ -16,7 +16,7 @@ class Hand:
             for card in self.cards_on:
                 print(card)
         elif amount_to_reveal == 'dealer':
-            for card in self.cards_on[0:len(self.cards_on)-1]:
+            for card in self.cards_on[0:len(self.cards_on) - 1]:
                 print(card)
 
     def add_card_from_deck(self, deck, amount=1):
@@ -27,8 +27,9 @@ class Hand:
                 self.cards_on.append(deck.take_one())
         return self.cards_on
 
-    def closest_to_num(self, list_of_values, target_value):
-        return list_of_values[min(range(len(list_of_values)), key=lambda i: abs(list_of_values[i] - target_value))]
+    def remove_all_cards(self):
+        self.cards_on = []
+        return self.cards_on
 
     def count_value_of_cards(self):
         self.value = 0
@@ -46,7 +47,7 @@ class Hand:
             new_hand_values_below_21 = []
             for card in self.cards_on:
                 if card.rank == 'Ace':
-                    new_hand_values = list(map(lambda x:x+self.value, [1, 11]))
+                    new_hand_values = list(map(lambda x: x + self.value, [1, 11]))
                     counter_hand = 0
                     for new_hand_value in new_hand_values:
                         if new_hand_value > 21:
@@ -58,13 +59,6 @@ class Hand:
                 self.value = 999
                 return self.value
             else:
-                self.value = new_hand_values_below_21[min(range(len(new_hand_values_below_21)), key=lambda i: abs(new_hand_values_below_21[i] - 21))]
+                self.value = new_hand_values_below_21[
+                    min(range(len(new_hand_values_below_21)), key=lambda i: abs(new_hand_values_below_21[i] - 21))]
                 return self.value
-
-
-
-
-
-
-
-

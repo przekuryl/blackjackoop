@@ -3,9 +3,9 @@ from BlackJack.Hand_class import Hand
 
 
 class Player:
-    def __init__(self, name):
+    def __init__(self, name, balance=500):
         self.name = name
-        self.balance = Bank(500)
+        self.bank = Bank(balance)
         self.hand = Hand()
 
     def bet(self, value):
