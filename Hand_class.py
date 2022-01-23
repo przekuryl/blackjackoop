@@ -9,7 +9,7 @@ class Hand:
         self.ace_counter = 0
 
     def __str__(self):
-        return f'Your hand cointans: {len(self.cards_on)} cards with total value: {self.value}'
+        return f'Your hand contains: {len(self.cards_on)} cards with total value: {self.value}'
 
     def show_cards(self, amount_to_reveal='all'):
         if amount_to_reveal == 'all':
@@ -20,11 +20,8 @@ class Hand:
                 print(card)
 
     def add_card_from_deck(self, deck, amount=1):
-        if amount == 1:
+        for num in range(0, amount):
             self.cards_on.append(deck.take_one())
-        else:
-            for num in range(0, amount):
-                self.cards_on.append(deck.take_one())
         return self.cards_on
 
     def remove_all_cards(self):
@@ -33,6 +30,7 @@ class Hand:
 
     def count_value_of_cards(self):
         self.value = 0
+        self.ace_counter = 0
         for card in self.cards_on:
             if card.rank == 'Ace':
                 self.ace_counter += 1
@@ -43,12 +41,10 @@ class Hand:
         if self.ace_counter == 0:
             return self.value
         else:
-            new_hand_values = []
             new_hand_values_below_21 = []
             for card in self.cards_on:
                 if card.rank == 'Ace':
                     new_hand_values = list(map(lambda x: x + self.value, [1, 11]))
-                    counter_hand = 0
                     for new_hand_value in new_hand_values:
                         if new_hand_value > 21:
                             continue

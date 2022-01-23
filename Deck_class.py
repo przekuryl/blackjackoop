@@ -1,4 +1,4 @@
-from CardGame.Card_class import Card, suits, ranks
+from BlackJack.Card_class import Card
 import random
 
 
@@ -8,11 +8,11 @@ class Deck:
 
         self.all_cards = []
 
-        for suit in suits:
-            for rank in ranks:
+        for suit in Card.suits:
+            for rank in Card.ranks:
                 self.all_cards.append(Card(suit, rank))
 
-    def shuffle_deck(self):
+    def shuffle(self):
         # there is 52 of cards, init brings them with non-random deck
         random.shuffle(self.all_cards)
 

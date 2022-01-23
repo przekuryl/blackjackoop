@@ -15,7 +15,7 @@ while game_on:
 
     # everytime we recreate and reshuffle deck
     deck = Deck()
-    deck.shuffle_deck()
+    deck.shuffle()
     # draw 2 cards from deck both player and dealer
     dealer.hand.add_card_from_deck(deck, 2)
     player.hand.add_card_from_deck(deck, 2)
@@ -35,6 +35,7 @@ while game_on:
 
         # reveal cards
         print(f'\n{dealer.name} cards:')
+        # it will show only 1 card instead of 2
         dealer.hand.show_cards('dealer')
         print(f'\n{player.name} cards:')
         player.hand.show_cards()
@@ -44,7 +45,7 @@ while game_on:
         # dealer.hand.show_cards() print(f'{dealer.name} value of cards (Ace favored to less than or equal to 21): {
         # dealer.hand.count_value_of_cards()}')
 
-        # player loop card
+        # player loop
         if player.hand.value <= 21:
             while True:
                 print(f'{player.name} turn.')
@@ -86,14 +87,14 @@ while game_on:
         player_score = abs(player.hand.value - 21)
         dealer_score = abs(dealer.hand.value - 21)
         if player.hand.value > 21:
-            print(f'{player.name} lose! You lost your {player_bet} bet')
+            print(f'{player.name} lose! You lost your {player_bet} bet\n')
             player.bank.remove_from_balance(player_bet)
         elif player_score < dealer_score:
-            print(f'{player.name} wins! You earn 150% of your bet')
+            print(f'{player.name} wins! You earn 150% of your bet\n')
             player_bet = round(player_bet * 1.5)
             player.bank.add_to_balance(player_bet)
         elif player_score > dealer_score:
-            print(f'{player.name} lose! You lost your {player_bet} bet')
+            print(f'{player.name} lose! You lost your {player_bet} bet\n')
             player.bank.remove_from_balance(player_bet)
         else:
             print('its a draw! No one wins. If there were any bets, they back to balance')
