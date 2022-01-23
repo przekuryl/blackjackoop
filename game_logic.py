@@ -25,13 +25,16 @@ while game_on:
         # place bet before game round
         while True:
             print(f'{player.name} Your current balance is {player.bank.balance}')
-            player_bet = input('Place your bet! Minimal value of bet is 10\n')
-            player_bet = int(player_bet)
-            if 10 < player_bet <= player.bank.balance:
-                break
-            else:
+            try:
+                player_bet = int(input('Place your bet! Minimal value of bet is 10\n'))
+            except:
                 print(f'{player.name} Please enter a valid amount to bet.')
-                continue
+            else:
+                if 10 <= player_bet <= player.bank.balance:
+                    break
+                else:
+                    print(f'{player.name} Please enter a valid amount to bet.')
+                    continue
 
         # reveal cards
         print(f'\n{dealer.name} cards:')

@@ -51,8 +51,9 @@ class Hand:
                         else:
                             new_hand_values_below_21.append(new_hand_value)
 
+            # if any value is more than 21 than just add ace as 1, and return value
             if len(new_hand_values_below_21) == 0:
-                self.value = 999
+                self.value += 1
                 return self.value
             else:
                 self.value = new_hand_values_below_21[
